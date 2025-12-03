@@ -2,25 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 👇 ЭТОТ БЛОК ИСПРАВЛЯЕТ ПРОБЛЕМУ */
 html, body, #root {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Чтобы не было двойных скроллов */
+  overflow: hidden;
+  background-color: #030304; /* Глубокий черный */
+  color: #e2e8f0;
 }
 
 @layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-  }
-  .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  /* Эффект стеклянной панели */
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
   }
 }
 
-body {
-  @apply bg-[#050505] text-slate-200;
+/* Анимация пульсации для фона */
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 10s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
 }
