@@ -8,9 +8,9 @@ import { Send, Bot, Sparkles, Zap, Shield, CreditCard, User, Command } from 'luc
 const API_URL = import.meta.env.VITE_API_URL || "https://project-seller.onrender.com/api/chat";
 
 export default function App() {
-  const [messages, setMessages] = useState<{role: 'user' | 'ai', text: string}[]>([
-    { role: 'ai', text: '👋 Привет! Я — **TechVision AI**. \n\nЯ здесь, чтобы продемонстрировать технический уровень решений, которые мы предлагаем. \n\nСпросите про **архитектуру**, **цены** или **стек**.' }
-  ]);
+ const [messages, setMessages] = useState<{role: 'user' | 'ai', text: string}[]>([
+  { role: 'ai', text: '👋 Привет! Я — цифровой ассистент **WorkWorkStudio**. \n\nМы занимаемся разработкой мобильных приложений, веб-сервисов и автоматизацией на **n8n**. \n\n🔥 **Главная фишка:** Работаем без предоплаты.' }
+]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -36,10 +36,10 @@ export default function App() {
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages, loading]);
 
   const suggestions = [
-    { icon: <Zap size={14}/>, label: "Возможности", text: "Что ты умеешь?" },
-    { icon: <Shield size={14}/>, label: "Надежность", text: "Почему NestJS?" },
-    { icon: <CreditCard size={14}/>, label: "Бюджет", text: "Сколько стоит разработка?" },
-  ];
+  { icon: <Zap size={14}/>, label: "Автоматизация", text: "Что вы умеете делать на n8n?" },
+  { icon: <CreditCard size={14}/>, label: "Условия", text: "Как вы работаете без предоплаты?" },
+  { icon: <Shield size={14}/>, label: "Разработка", text: "Какие приложения вы делаете?" },
+];
 
   return (
     <div className="flex flex-col h-full relative overflow-hidden font-sans selection:bg-purple-500/30">
