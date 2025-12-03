@@ -9,7 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL || "https://project-seller.onrender
 
 export default function App() {
  const [messages, setMessages] = useState<{role: 'user' | 'ai', text: string}[]>([
-  { role: 'ai', text: '👋 Привет! Я — цифровой ассистент **WorkWorkStudio**. \n\nМы занимаемся разработкой мобильных приложений, веб-сервисов и автоматизацией на **n8n**. \n\n🔥 **Главная фишка:** Работаем без предоплаты.' }
+  { role: 'ai', text: '👋 Привет! Я — цифровой ассистент **WorkWorkStudio**. \n\nМы занимаемся разработкой мобильных приложений, веб-сервисов и автоматизацией на **n8n**. ' }
 ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
