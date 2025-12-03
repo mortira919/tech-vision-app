@@ -2,23 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 👇 ЭТОТ БЛОК ИСПРАВЛЯЕТ ПРОБЛЕМУ */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Чтобы не было двойных скроллов */
+}
+
 @layer utilities {
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-  
-  /* Анимация градиента */
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 8s ease infinite;
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+  }
+  .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
   }
 }
 
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 body {
-  @apply bg-[#050505] text-slate-200 overflow-hidden;
+  @apply bg-[#050505] text-slate-200;
 }
