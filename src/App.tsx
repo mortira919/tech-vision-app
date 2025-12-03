@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
-import { Send, Bot, User, Code, Database, Sparkles, Briefcase, ChevronRight } from 'lucide-react';
+import { Send, Bot, User, Database, Sparkles, Briefcase } from 'lucide-react';
 
-// ⚠️ СЮДА НУЖНО БУДЕТ ВСТАВИТЬ ССЫЛКУ ОТ NGROK (Шаг 3)
-const API_URL = "https://ТВОЙ_NGROK_URL.ngrok-free.app/api/chat"; 
+const API_URL = "https://techvision-bot.onrender.com/api/chat";
 
 export default function App() {
   const [messages, setMessages] = useState<{role: 'user' | 'ai', text: string}[]>([
