@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
-import { Send, Bot, Terminal, Cpu, Zap, Activity, ArrowRight } from 'lucide-react';
+import {  Bot, Cpu, Activity, ArrowRight } from 'lucide-react';
 
 // Убедись, что тут правильная ссылка на твой бэкенд!
 const API_URL = import.meta.env.VITE_API_URL || "https://project-seller.onrender.com/api/chat";
