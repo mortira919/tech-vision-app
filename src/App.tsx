@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Sparkles, Volume2, VolumeX, User, ArrowRight, Briefcase, MessageSquare, UserCircle, Mic, MicOff } from 'lucide-react';
+import { Bot, Sparkles, Volume2, VolumeX, ArrowRight, Briefcase, MessageSquare, UserCircle, Mic, MicOff } from 'lucide-react';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 
@@ -133,29 +133,48 @@ function Chat() {
       {/* Chat Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 z-10 scrollbar-hide">
         <AnimatePresence initial={false}>
-          {messages.map((m, i) => (
+          {messages.map((m, i) => {
+            // Проверяем: следующее сообщение от того же автора?
+            const isNextSame = messages[i + 1]?.role === m.role;
+            // Проверяем: предыдущее сообщение от того же автора?
+            const isPrevSame = messages[i - 1]?.role === m.role;
+
+            return (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                className={`flex gap-3 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}
+                className={`flex gap-3 ${m.role === 'user' ? 'flex-row-reverse' : ''} ${isNextSame ? 'mb-1' : 'mb-4'}`}
               >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-auto ${
-                  m.role === 'ai' ? 'bg-[#1a1a1f] border border-white/10' : 'bg-white'
-                }`}>
-                  {m.role === 'ai' ? <Sparkles size={14} className="text-purple-400"/> : <User size={14} className="text-black"/>}
+                {/* АВАТАРКА (Показываем только у ПОСЛЕДНЕГО сообщения в группе) */}
+                <div className={`w-8 h-8 flex-shrink-0 flex items-end justify-center ${m.role === 'user' ? 'hidden' : ''}`}>
+                   {!isNextSame ? (
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg">
+                         <Sparkles size={14} className="text-white"/>
+                      </div>
+                   ) : (
+                      <div className="w-8 h-8" /> /* Пустое место, чтобы текст не прыгал */
+                   )}
                 </div>
                 
+                {/* ПУЗЫРЬ СООБЩЕНИЯ */}
                 <div className={`
-                  max-w-[80%] px-4 py-3 rounded-2xl text-[14px] leading-relaxed shadow-md
+                  max-w-[80%] px-4 py-3 text-[15px] leading-relaxed shadow-sm break-words
                   ${m.role === 'ai' 
-                      ? 'glass text-slate-200 rounded-bl-none border border-white/5' 
-                      : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-br-none shadow-purple-900/20'}
+                      ? `glass text-slate-200 border-white/5 
+                         ${isPrevSame ? 'rounded-tl-lg' : 'rounded-tl-none'} 
+                         ${isNextSame ? 'rounded-bl-lg' : 'rounded-bl-2xl'}
+                         rounded-r-2xl` 
+                      : `bg-gradient-to-r from-indigo-600 to-purple-600 text-white 
+                         ${isPrevSame ? 'rounded-tr-lg' : 'rounded-tr-none'} 
+                         ${isNextSame ? 'rounded-br-lg' : 'rounded-br-2xl'}
+                         rounded-l-2xl shadow-purple-900/20`}
                 `}>
                   <ReactMarkdown>{m.text}</ReactMarkdown>
                 </div>
               </motion.div>
-          ))}
+            );
+        })}
         </AnimatePresence>
         
         {loading && (
