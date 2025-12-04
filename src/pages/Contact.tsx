@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, CheckCircle } from 'lucide-react';
+import { CheckCircle, Calendar, MessageCircle } from 'lucide-react';
 
 export default function Contact() {
   return (
@@ -17,16 +17,22 @@ export default function Contact() {
         </div>
 
         <h2 className="text-2xl font-bold text-white mb-2">WorkWork Studio</h2>
-        <p className="text-slate-400 text-sm mb-6">Гарантируем результат или вернем деньги (которых мы не берем вперед 😉)</p>
+        <p className="text-slate-400 text-sm mb-6">Гарантируем результат или вернем деньги.</p>
 
         <div className="space-y-3">
-          <button className="w-full py-3.5 bg-white text-black rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-slate-200 transition active:scale-95">
-            <Mail size={18}/>
+          {/* Кнопка 1: Телеграм */}
+          <button 
+            onClick={() => window.open('https://t.me/ТВОЙ_НИК', '_blank')}
+            className="w-full py-3.5 bg-blue-600 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-500 transition active:scale-95 shadow-lg shadow-blue-900/20"
+          >
+            <MessageCircle size={18}/>
             Написать в Telegram
           </button>
           
-          <button className="w-full py-3.5 bg-[#222] text-white border border-white/10 rounded-xl font-medium text-sm hover:bg-[#2a2a2a] transition active:scale-95">
-            Посмотреть GitHub
+          {/* Кнопка 2: Звонок (Вместо Гитхаба) */}
+          <button className="w-full py-3.5 bg-[#222] text-white border border-white/10 rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:bg-[#2a2a2a] transition active:scale-95">
+            <Calendar size={18} className="text-slate-400"/>
+            Забронировать звонок
           </button>
         </div>
       </motion.div>
@@ -39,9 +45,9 @@ export default function Contact() {
       >
         <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Наши принципы</p>
         <div className="flex justify-center gap-4 text-xs text-slate-300 font-mono">
-          <span>0% PREPAY</span>
+          <span>0% ПРЕДОПЛАТЫ</span>
           <span>•</span>
-          <span>100% QUALITY</span>
+          <span>100% КАЧЕСТВО</span>
         </div>
       </motion.div>
     </div>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {  Zap, TrendingUp, Truck, X, ArrowRight } from 'lucide-react';
+import { ExternalLink, TrendingUp, X, ArrowRight, Image as ImageIcon } from 'lucide-react';
 
-// --- ДЕМО-КОМПОНЕНТЫ (Визуал внутри карточек) ---
+// --- ДЕМО-КОМПОНЕНТЫ ---
 
-// 1. Анимированная Банковская Карта
+// 1. Анимированная Банковская Карта (Оставляем, она топ)
 const CreditCardDemo = () => (
   <div className="relative w-full h-32 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-xl p-4 shadow-lg overflow-hidden group-hover:scale-105 transition-transform duration-500">
     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
@@ -22,7 +22,35 @@ const CreditCardDemo = () => (
   </div>
 );
 
-// 2. Живой График (SVG Анимация)
+// 2. 🔥 НОВОЕ: AI Vision Scanner (Вместо логистики)
+const VisionDemo = () => (
+  <div className="w-full h-32 bg-[#0f0f12] rounded-xl border border-white/10 relative overflow-hidden flex items-center justify-center">
+    {/* Имитация картинки */}
+    <div className="w-20 h-20 rounded-lg border-2 border-dashed border-white/20 flex items-center justify-center">
+      <ImageIcon size={30} className="text-white/20"/>
+    </div>
+    
+    {/* Сканирующий луч */}
+    <motion.div 
+      className="absolute left-0 right-0 h-0.5 bg-green-400 shadow-[0_0_20px_rgba(74,222,128,0.8)] z-10"
+      animate={{ top: ['10%', '90%', '10%'] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+    />
+
+    {/* Рамки детекции */}
+    <motion.div 
+      className="absolute w-16 h-16 border-2 border-green-500 rounded-lg opacity-0"
+      animate={{ opacity: [0, 1, 0], scale: [1.2, 1, 1.1] }}
+      transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+    />
+    
+    <div className="absolute top-2 right-2 text-[10px] font-mono text-green-400 bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">
+      PROCESSING
+    </div>
+  </div>
+);
+
+// 3. Живой График (Оставляем)
 const ChartDemo = () => (
   <div className="w-full h-32 bg-[#0f0f12] rounded-xl border border-white/10 p-3 relative overflow-hidden flex items-end justify-between gap-1">
     {[40, 70, 50, 90, 60, 80, 100].map((h, i) => (
@@ -36,36 +64,6 @@ const ChartDemo = () => (
     ))}
     <div className="absolute top-3 left-3 text-xs font-bold text-cyan-400 flex items-center gap-1">
       <TrendingUp size={12}/> +142% Growth
-    </div>
-  </div>
-);
-
-// 3. Карта Доставки (Пульсация)
-const MapDemo = () => (
-  <div className="w-full h-32 bg-[#1a1a2e] rounded-xl border border-white/10 relative overflow-hidden">
-    {/* Сетка карты */}
-    <div className="absolute inset-0 opacity-20" 
-         style={{ backgroundImage: 'radial-gradient(#4f4f4f 1px, transparent 1px)', backgroundSize: '16px 16px' }}>
-    </div>
-    
-    {/* Маршрут */}
-    <svg className="absolute inset-0 w-full h-full pointer-events-none">
-      <motion.path 
-        d="M 20 80 Q 80 20 180 60" 
-        fill="transparent" 
-        stroke="#10b981" 
-        strokeWidth="3"
-        strokeDasharray="10 5"
-        initial={{ strokeDashoffset: 100 }}
-        animate={{ strokeDashoffset: 0 }}
-        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-      />
-    </svg>
-
-    {/* Точки */}
-    <div className="absolute bottom-6 left-4 w-3 h-3 bg-white rounded-full shadow-[0_0_10px_white]"></div>
-    <div className="absolute top-10 right-10 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-[0_0_15px_#10b981]">
-      <Truck size={10} className="text-black"/>
     </div>
   </div>
 );
@@ -84,12 +82,12 @@ const projects = [
   },
   {
     id: 2,
-    title: "LogiAI Dashboard",
-    category: "SaaS Platform",
-    desc: "Система управления логистикой с AI-прогнозированием маршрутов.",
-    stats: ["-30% Расходы", "Real-time Tracking", "AI Оптимизация"],
-    tech: ["React", "Python (AI)", "WebSockets"],
-    visual: <MapDemo />,
+    title: "Vision AI Editor",
+    category: "AI Media App",
+    desc: "Приложение для обработки фото/видео нейросетями. Удаление фона, апскейл, генерация.",
+    stats: ["4k Rendering", "GPU Cluster", "FaceID Auth"],
+    tech: ["Flutter", "Python (Torch)", "AWS S3"],
+    visual: <VisionDemo />, // Новая демка
     color: "green"
   },
   {
@@ -114,7 +112,7 @@ export default function Projects() {
         <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
           Наши <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Кейсы</span>
         </h2>
-        <p className="text-slate-400 text-sm">Проекты, которые приносят прибыль.</p>
+        <p className="text-slate-400 text-sm">Реальные решения для бизнеса.</p>
       </div>
 
       <div className="space-y-6">
@@ -131,7 +129,6 @@ export default function Projects() {
             <div className={`absolute -inset-0.5 bg-gradient-to-r from-${p.color}-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500`}/>
             
             <div className="relative p-4 z-10">
-              {/* Визуальная часть */}
               <div className="mb-4">
                 {p.visual}
               </div>
@@ -150,7 +147,7 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* МОДАЛЬНОЕ ОКНО ДЕТАЛЕЙ */}
+      {/* МОДАЛЬНОЕ ОКНО */}
       <AnimatePresence>
         {selectedId && (
           <motion.div 
@@ -205,7 +202,7 @@ export default function Projects() {
 
                       <button className="w-full py-3 bg-white text-black font-bold rounded-xl hover:bg-slate-200 transition active:scale-95 flex items-center justify-center gap-2">
                         Хочу такой проект
-                        <Zap size={16} className="fill-black"/>
+                        <ExternalLink size={16} className="text-black"/>
                       </button>
                     </div>
                   </>
