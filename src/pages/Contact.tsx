@@ -22,7 +22,7 @@ export default function Contact() {
         <div className="space-y-3">
           {/* Кнопка 1: Телеграм */}
           <button 
-            onClick={() => window.open('https://t.me/ТВОЙ_НИК', '_blank')}
+            onClick={() => window.open('https://t.me/WORKWORKSTUDMANAGER', '_blank')}
             className="w-full py-3.5 bg-blue-600 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-500 transition active:scale-95 shadow-lg shadow-blue-900/20"
           >
             <MessageCircle size={18}/>
