@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, Sparkles, Zap, Shield, CreditCard, User, Command, MessageSquare, Briefcase, UserCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Send, Bot, Sparkles, Zap, Shield, CreditCard, User, MessageSquare, Briefcase, UserCircle } from 'lucide-react';
 
 // Импортируем страницы (убедись, что создал их в src/pages!)
 import Projects from './pages/Projects';
