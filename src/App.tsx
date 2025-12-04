@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, Sparkles, Volume2, VolumeX, User, ArrowRight, Briefcase, MessageSquare, UserCircle, Mic, MicOff, MoreHorizontal } from 'lucide-react';
+import { Bot, Sparkles, Volume2, VolumeX, User, ArrowRight, Briefcase, MessageSquare, UserCircle, Mic, MicOff } from 'lucide-react';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 
