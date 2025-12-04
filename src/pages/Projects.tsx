@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Smartphone, Globe, Zap, TrendingUp, ShieldCheck, Truck, X, ArrowRight } from 'lucide-react';
+import {  Zap, TrendingUp, Truck, X, ArrowRight } from 'lucide-react';
 
 // --- ДЕМО-КОМПОНЕНТЫ (Визуал внутри карточек) ---
 
