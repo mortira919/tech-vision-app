@@ -99,8 +99,16 @@ function Chat() {
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages, loading]);
 
-  const quickReplies = ["💰 Сколько стоит?", "📱 Нужен App", "🚀 Автоматизация", "🤔 Как вы работаете?"];
-
+  // Много кнопок, чтобы закрыть все вопросы
+  const quickReplies = [
+    "📱 Разработка App",
+    "💸 Условия (Без предоплаты)",
+    "🤖 AI и Автоматизация",
+    "📊 CRM системы",
+    "🎨 Дизайн и UX",
+    "⏳ Сроки разработки",
+    "🤝 Как начать?"
+  ];
   return (
     <div className="flex flex-col h-full relative pb-20 bg-[#030304]">
       

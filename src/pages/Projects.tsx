@@ -1,104 +1,125 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, TrendingUp, X, ArrowRight, Image as ImageIcon } from 'lucide-react';
+import { TrendingUp, X, ArrowRight, Image as ImageIcon, Zap } from 'lucide-react';
 
-// --- ДЕМО-КОМПОНЕНТЫ ---
+// --- ВИЗУАЛЬНЫЕ КОМПОНЕНТЫ (АНИМАЦИИ) ---
 
-// 1. Анимированная Банковская Карта (Оставляем, она топ)
-const CreditCardDemo = () => (
-  <div className="relative w-full h-32 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-xl p-4 shadow-lg overflow-hidden group-hover:scale-105 transition-transform duration-500">
-    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+// 1. Финтех (Карта)
+const FintechVisual = () => (
+  <div className="relative w-full h-32 bg-gradient-to-br from-indigo-900 to-slate-900 rounded-xl p-4 shadow-lg overflow-hidden group-hover:scale-105 transition-transform duration-500 border border-white/10">
+    <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl"></div>
     <div className="flex justify-between items-start mb-6">
-      <div className="w-8 h-5 bg-yellow-400/80 rounded flex items-center justify-center gap-1">
+      <div className="w-8 h-5 bg-gradient-to-r from-yellow-400 to-yellow-200 rounded flex items-center justify-center gap-1 shadow-sm">
         <div className="w-2 h-2 border border-black/20 rounded-full"></div>
       </div>
-      <span className="text-white/80 font-mono text-xs">NEOBANK</span>
+      <span className="text-white/60 font-mono text-[10px]">PLATINUM</span>
     </div>
-    <div className="font-mono text-white text-lg tracking-widest mb-1">•••• 4290</div>
-    <div className="flex justify-between text-[10px] text-white/60 font-mono uppercase">
-      <span>Holder Name</span>
-      <span>12/28</span>
+    <div className="font-mono text-white text-lg tracking-widest mb-1 drop-shadow-md">•••• 8842</div>
+    <div className="flex justify-between text-[10px] text-white/50 font-mono uppercase">
+      <span>WorkWork Client</span>
+      <span>09/29</span>
     </div>
   </div>
 );
 
-// 2. 🔥 НОВОЕ: AI Vision Scanner (Вместо логистики)
-const VisionDemo = () => (
-  <div className="w-full h-32 bg-[#0f0f12] rounded-xl border border-white/10 relative overflow-hidden flex items-center justify-center">
-    {/* Имитация картинки */}
-    <div className="w-20 h-20 rounded-lg border-2 border-dashed border-white/20 flex items-center justify-center">
-      <ImageIcon size={30} className="text-white/20"/>
-    </div>
-    
-    {/* Сканирующий луч */}
+// 2. AI / Vision (Сканер)
+const AiVisual = () => (
+  <div className="w-full h-32 bg-[#0a0a0a] rounded-xl border border-white/10 relative overflow-hidden flex items-center justify-center">
+    <div className="absolute inset-0 bg-[radial-gradient(#ffffff1a_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
     <motion.div 
-      className="absolute left-0 right-0 h-0.5 bg-green-400 shadow-[0_0_20px_rgba(74,222,128,0.8)] z-10"
+      className="absolute left-0 right-0 h-[2px] bg-green-500 shadow-[0_0_15px_rgba(34,197,94,0.8)] z-10"
       animate={{ top: ['10%', '90%', '10%'] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+      transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
     />
-
-    {/* Рамки детекции */}
-    <motion.div 
-      className="absolute w-16 h-16 border-2 border-green-500 rounded-lg opacity-0"
-      animate={{ opacity: [0, 1, 0], scale: [1.2, 1, 1.1] }}
-      transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-    />
-    
-    <div className="absolute top-2 right-2 text-[10px] font-mono text-green-400 bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">
-      PROCESSING
+    <div className="w-16 h-16 border border-green-500/50 rounded-lg flex items-center justify-center bg-green-500/5 backdrop-blur-sm">
+      <ImageIcon size={24} className="text-green-500"/>
+    </div>
+    <div className="absolute bottom-2 right-2 text-[8px] font-mono text-green-400 bg-green-900/30 px-1.5 rounded border border-green-500/20">
+      AI DETECTED
     </div>
   </div>
 );
 
-// 3. Живой График (Оставляем)
-const ChartDemo = () => (
+// 3. Аналитика / Крипта (График)
+const CryptoVisual = () => (
   <div className="w-full h-32 bg-[#0f0f12] rounded-xl border border-white/10 p-3 relative overflow-hidden flex items-end justify-between gap-1">
-    {[40, 70, 50, 90, 60, 80, 100].map((h, i) => (
+    {[30, 50, 45, 80, 60, 95, 70, 100].map((h, i) => (
       <motion.div
         key={i}
-        initial={{ height: 0 }}
+        initial={{ height: "10%" }}
         animate={{ height: `${h}%` }}
-        transition={{ duration: 1, delay: i * 0.1, repeat: Infinity, repeatType: "reverse", repeatDelay: 2 }}
-        className="w-full bg-gradient-to-t from-cyan-600 to-cyan-400 rounded-t-sm opacity-80"
+        transition={{ duration: 1.5, delay: i * 0.1, repeat: Infinity, repeatType: "reverse" }}
+        className="w-full bg-gradient-to-t from-cyan-600/80 to-cyan-400 rounded-sm"
       />
     ))}
-    <div className="absolute top-3 left-3 text-xs font-bold text-cyan-400 flex items-center gap-1">
-      <TrendingUp size={12}/> +142% Growth
+    <div className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 rounded bg-cyan-900/30 border border-cyan-500/20">
+      <TrendingUp size={10} className="text-cyan-400"/>
+      <span className="text-[10px] font-bold text-cyan-300">+24.5%</span>
     </div>
   </div>
 );
 
-// --- ДАННЫЕ ПРОЕКТОВ ---
+// --- СПИСОК ПРОЕКТОВ ---
 const projects = [
   {
     id: 1,
-    title: "NeoBank Mobile",
-    category: "FinTech App",
-    desc: "Мобильный банк нового поколения. Биометрия, P2P переводы, аналитика трат.",
-    stats: ["1M+ Пользователей", "0.05s Задержка", "PCI DSS Level 1"],
-    tech: ["React Native", "Node.js", "PostgreSQL"],
-    visual: <CreditCardDemo />,
+    title: "NeoBank SuperApp",
+    type: "fintech",
+    desc: "Мобильный банкинг с P2P переводами, оплатой QR и крипто-кошельком.",
+    stats: ["iOS & Android", "High-Security", "0% Bugs"],
+    tech: ["Flutter", "Go", "PostgreSQL"],
+    visual: <FintechVisual />,
     color: "indigo"
   },
   {
     id: 2,
-    title: "Vision AI Editor",
-    category: "AI Media App",
-    desc: "Приложение для обработки фото/видео нейросетями. Удаление фона, апскейл, генерация.",
-    stats: ["4k Rendering", "GPU Cluster", "FaceID Auth"],
-    tech: ["Flutter", "Python (Torch)", "AWS S3"],
-    visual: <VisionDemo />, // Новая демка
+    title: "Vision AI Scanner",
+    type: "ai",
+    desc: "Система распознавания документов и дефектов на производстве.",
+    stats: ["99.8% Точность", "Real-time", "On-Device"],
+    tech: ["Python", "TensorFlow", "React"],
+    visual: <AiVisual />,
     color: "green"
   },
   {
     id: 3,
-    title: "CryptoTrader Pro",
-    category: "Web3 Platform",
-    desc: "Терминал для арбитража криптовалют. Подключение к 15 биржам.",
-    stats: ["$50M Оборот", "High-Load", "Instant Exec"],
-    tech: ["Next.js", "Go", "Redis"],
-    visual: <ChartDemo />,
+    title: "Arbitrage Terminal",
+    type: "crypto",
+    desc: "Платформа для арбитража криптовалют между 15 биржами в реальном времени.",
+    stats: ["$100M Volume", "WebSockets", "<50ms Ping"],
+    tech: ["Next.js", "Node.js", "Redis"],
+    visual: <CryptoVisual />,
     color: "cyan"
+  },
+  {
+    id: 4,
+    title: "Delivery Network",
+    type: "fintech", // Используем стиль карты для логистики
+    desc: "Убер-подобное приложение для грузоперевозок и логистики.",
+    stats: ["Live Map", "Auto-Dispatch", "Billing"],
+    tech: ["React Native", "NestJS", "Google Maps"],
+    visual: <FintechVisual />, // Переиспользуем визуал
+    color: "orange"
+  },
+  {
+    id: 5,
+    title: "Auto-Sales Agent",
+    type: "ai",
+    desc: "Голосовой бот, который сам звонит клиентам и продает услуги.",
+    stats: ["Voice API", "NLP Core", "CRM Sync"],
+    tech: ["n8n", "OpenAI", "Asterisk"],
+    visual: <AiVisual />,
+    color: "purple"
+  },
+  {
+    id: 6,
+    title: "Corporate CRM",
+    type: "crypto", // Используем стиль графика
+    desc: "ERP система для управления строительной компанией с аналитикой.",
+    stats: ["Dashboard", "Reports", "Role Model"],
+    tech: ["React", "C# .NET", "MSSQL"],
+    visual: <CryptoVisual />,
+    color: "blue"
   }
 ];
 
@@ -108,59 +129,59 @@ export default function Projects() {
   return (
     <div className="flex flex-col h-full px-4 pt-8 pb-24 overflow-y-auto scrollbar-hide">
       
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">
           Наши <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Кейсы</span>
         </h2>
-        <p className="text-slate-400 text-sm">Реальные решения для бизнеса.</p>
+        <p className="text-xs text-slate-400">Реализованные проекты WorkWorkStudio.</p>
       </div>
 
-      <div className="space-y-6">
+      <div className="grid grid-cols-1 gap-4">
         {projects.map((p, i) => (
           <motion.div
             key={p.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.15 }}
+            transition={{ delay: i * 0.1 }}
             onClick={() => setSelectedId(p.id)}
-            className="group relative bg-[#111] border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:border-white/20 transition-all active:scale-95"
+            className="relative bg-[#111] border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:border-white/20 active:scale-95 transition-all"
           >
-            {/* Градиент подсветки */}
-            <div className={`absolute -inset-0.5 bg-gradient-to-r from-${p.color}-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500`}/>
-            
-            <div className="relative p-4 z-10">
-              <div className="mb-4">
-                {p.visual}
+            {/* Карточка */}
+            <div className="p-4 flex gap-4 items-center">
+              <div className="w-24 h-20 shrink-0 rounded-lg overflow-hidden border border-white/5">
+                 {/* Уменьшенная версия визуала */}
+                 <div className="scale-75 origin-top-left w-[130%] h-[130%]">
+                    {p.visual}
+                 </div>
               </div>
-
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-lg font-bold text-white">{p.title}</h3>
-                    <ArrowRight size={14} className="text-slate-500 -rotate-45 group-hover:rotate-0 group-hover:text-white transition-all"/>
-                  </div>
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">{p.category}</p>
+              
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-bold text-white truncate">{p.title}</h3>
+                <p className="text-[10px] text-slate-400 line-clamp-2 leading-tight mt-1">{p.desc}</p>
+                <div className="flex items-center gap-2 mt-2">
+                    <span className={`text-[9px] px-1.5 py-0.5 rounded border border-${p.color}-500/30 text-${p.color}-300 bg-${p.color}-500/10 uppercase font-bold`}>
+                        {p.tech[0]}
+                    </span>
+                    <span className="text-[9px] text-slate-500">+ ещё 2</span>
                 </div>
               </div>
+              
+              <ArrowRight size={16} className="text-white/20"/>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* МОДАЛЬНОЕ ОКНО */}
+      {/* МОДАЛКА (ДЕТАЛИ) */}
       <AnimatePresence>
         {selectedId && (
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
             onClick={() => setSelectedId(null)}
           >
             <motion.div 
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
+              initial={{ scale: 0.9, y: 50 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 50 }}
               className="w-full max-w-sm bg-[#15151a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
               onClick={e => e.stopPropagation()}
             >
@@ -168,41 +189,32 @@ export default function Projects() {
                 const p = projects.find(item => item.id === selectedId)!;
                 return (
                   <>
-                    <div className="relative h-40 bg-[#0a0a0c] flex items-center justify-center p-6 border-b border-white/5">
-                        {p.visual}
-                        <button 
-                          onClick={() => setSelectedId(null)} 
-                          className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-white/20 transition"
-                        >
-                          <X size={18}/>
-                        </button>
+                    <div className="relative h-44 bg-[#050505] flex items-center justify-center p-6 border-b border-white/5">
+                        <div className="w-full h-full scale-110">{p.visual}</div>
+                        <button onClick={() => setSelectedId(null)} className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-white/20"><X size={18}/></button>
                     </div>
                     
                     <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
+                      <h3 className="text-xl font-bold text-white mb-2">{p.title}</h3>
                       <p className="text-slate-400 text-sm leading-relaxed mb-6">{p.desc}</p>
                       
-                      <div className="space-y-4 mb-6">
-                        <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mb-6">
                           {p.tech.map(t => (
-                            <span key={t} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs text-slate-300 font-mono">
-                              {t}
-                            </span>
+                            <span key={t} className="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300 font-mono">{t}</span>
                           ))}
-                        </div>
-                        <div className="grid grid-cols-3 gap-2">
-                          {p.stats.map((s, idx) => (
-                            <div key={idx} className="bg-[#0a0a0c] p-2 rounded-lg text-center border border-white/5">
-                              <p className="text-[10px] text-slate-500 font-bold uppercase">{s.split(' ')[1]}</p>
-                              <p className={`text-xs font-bold text-${p.color}-400`}>{s.split(' ')[0]}</p>
-                            </div>
-                          ))}
-                        </div>
                       </div>
 
-                      <button className="w-full py-3 bg-white text-black font-bold rounded-xl hover:bg-slate-200 transition active:scale-95 flex items-center justify-center gap-2">
-                        Хочу такой проект
-                        <ExternalLink size={16} className="text-black"/>
+                      <div className="grid grid-cols-3 gap-2 mb-6">
+                          {p.stats.map((s, idx) => (
+                            <div key={idx} className="bg-[#0a0a0c] p-2 rounded-lg text-center border border-white/5">
+                              <p className={`text-[10px] font-bold text-${p.color}-400 mb-0.5`}>{s.split(' ')[0]}</p>
+                              <p className="text-[8px] text-slate-500 uppercase">{s.split(' ').slice(1).join(' ')}</p>
+                            </div>
+                          ))}
+                      </div>
+
+                      <button className="w-full py-3 bg-white text-black font-bold rounded-xl active:scale-95 transition flex items-center justify-center gap-2">
+                        Хочу такой проект <Zap size={16} className="fill-black"/>
                       </button>
                     </div>
                   </>
